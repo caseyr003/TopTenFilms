@@ -1,0 +1,98 @@
+body {
+    padding-top: 50px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+h1 {
+   font-family: "Arial Black", Gadget, sans-serif;
+   font-size: 300px;
+   color: #f2f2f2;
+   text-shadow: 8px 8px rgba(46,61,73,0.5);
+}
+h2 {
+   font-family: Verdana, Geneva, sans-serif;
+}
+#trailer .modal-dialog {
+    margin-top: 200px;
+    width: 640px;
+    height: 480px;
+}
+.hanging-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    z-index: 9001;
+}
+#trailer-video {
+    width: 100%;
+    height: 100%;
+}
+.movie-container {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+}
+.movie-info {
+    margin: 90px 40px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.5);
+    background-color: rgba(255,255,255,0.85);
+    min-height: 320px;
+    transition: all 0.3s ease;
+}
+
+.movie-info:hover {
+    box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.5);
+    background-color: rgba(255,255,255,0.95);
+    cursor: pointer;
+}
+.poster-img {
+   float: left;
+   margin-right: 16px;
+}
+.attribution-img {
+   float: right;
+   margin-right: 16px;
+}
+.rank-right,
+.rank-left {
+   margin-top: 70px;
+}
+.rank-right {
+   text-align: right;
+}
+.rank-left {
+   text-align: left;
+}
+.scale-media {
+    padding-bottom: 56.25%;
+    position: relative;
+}
+.scale-media iframe {
+    border: none;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+}
+.navbar-inverse {
+   background-color: #ffffff;
+   border-color: #ffffff;
+   background-image: none;
+   box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.5);
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+   color: #000000;
+}
+footer {
+   margin-top: 0;
+   padding: 60px 20px;
+   color: #ffffff;
+   background-color: #b2b2b2;
+   text-align: center;
+   min-height: 200px;
+}
