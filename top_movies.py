@@ -65,13 +65,26 @@ main_page_content = '''
         </div>
       </div>
     </div>
-      {movie_tiles}
-  <footer>
-    <h2>Thanks for checking out my top ten movies list!</h2>
-    <h4>This project was created as part of Udacity's Full Stack Developer Nanodegree</h4>
-    <h5>Feel free to connect with me below</h5>
-    <a href="https://github.com/caseyr003">Github</a> | <a href="https://www.linkedin.com/in/casey003/">LinkedIn</a> | <a href="mailto:caseyross003@gmail.com">Email</a>
-  </footer>
+    <!-- Top Movies Content -->
+    {movie_tiles}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 popular-title">
+           <h2>Popular Movies on TMDB</h2>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        {popular_movie_tiles}
+      </div>
+    </div>
+    <footer>
+      <h2>Thanks for checking out my top ten movies list!</h2>
+      <h4>This project was created as part of Udacity's Full Stack Developer Nanodegree</h4>
+      <h5>Feel free to connect with me below</h5>
+      <a href="https://github.com/caseyr003">Github</a> | <a href="https://www.linkedin.com/in/casey003/">LinkedIn</a> | <a href="mailto:caseyross003@gmail.com">Email</a>
+    </footer>
   </body>
 </html>
 '''
@@ -120,6 +133,18 @@ movie_tile_content_left = '''
 </div>
 '''
 
+# A single popular movie entry html template
+popular_movie_tile_content = '''
+<div class="col-md-6">
+   <div class="popular-movie-info" style="background-image: url({cover_image_url})">
+      <img class="poster-img" src="{poster_image_url}" width="180" height="280">
+      <h2>{movie_title}</h2>
+      <h6>{movie_year} | {movie_rating}</h6>
+      <img class="attribution-img" src="https://www.themoviedb.org/assets/static_cache/bb45549239e25f1770d5f76727bcd7c0/images/v4/logos/408x161-powered-by-rectangle-blue.png" width="127" height="50">
+   </div>
+</div>
+'''
+
 
 def create_movie_tiles_content(movies):
     # The HTML content for this section of the page
@@ -161,13 +186,29 @@ def create_movie_tiles_content(movies):
     return content
 
 
-def open_movies_page(movies):
+def create_popular_movie_tiles_content(popular_movies):
+    # The HTML content for this section of the page
+    content = ''
+    for movie in popular_movies:
+        # Append the tile for the popular movie with its content filled in
+        content += popular_movie_tile_content.format(
+            movie_title=movie.title,
+            movie_rating=movie.rating,
+            movie_year=movie.year,
+            cover_image_url=movie.cover_image_url,
+            poster_image_url=movie.poster_image_url,
+        )
+    return content
+
+
+def open_movies_page(movies, popular_movies):
     # Create or overwrite the output file
     output_file = open('top_movies.html', 'w')
 
-    # Replace the movie tiles placeholder generated content
+    # Replace the movie tiles and popular movie tiles placeholders with generated content
     rendered_content = main_page_content.format(
-        movie_tiles=create_movie_tiles_content(movies))
+        movie_tiles=create_movie_tiles_content(movies),
+        popular_movie_tiles=create_popular_movie_tiles_content(popular_movies))
 
     # Output the file
     output_file.write(main_page_head + rendered_content)

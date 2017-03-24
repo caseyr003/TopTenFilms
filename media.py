@@ -15,6 +15,7 @@ class Movie():
         trailer_youtube_url (str): url that contains the youtube trailer
     """
 
+    # Initialize Movie Instance
     def __init__(self, movie_title, movie_summary, movie_rating, movie_runtime, movie_year, cover_image, poster_image, trailer_youtube):
         self.title = movie_title
         self.summary = movie_summary

@@ -1,7 +1,57 @@
 import media
 import top_movies
+import json
+import requests
+
+# API Key for The Movie DB
+api_key = "Add_API_KEY_HERE"
+# URL for most popular movies from The MovieDB
+url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=" + api_key
+# Save response data from get request
+response = requests.get(url)
+data = json.loads(response.text)
+# Array that will hold popular movies as a Movie object
+popular_movies = []
+
+# Iterate through popular movies
+for movie in data['results']:
+    # Check to see if each key is valid before defining
+    if 'title' in movie:
+        title = str(movie['title'])
+    else:
+        title = 'n/a'
+
+    if 'vote_average' in movie:
+        rating = str(movie['vote_average']) + '/10'
+    else:
+        rating = 'n/a'
+
+    if 'runtime' in movie:
+        runtime = str(movie['runtime']) + 'm'
+    else:
+        runtime = 'n/a'
+
+    if 'release_date' in movie:
+        year = str(movie['release_date']).split("-")[0]
+    else:
+        year = 'n/a'
+
+    if 'backdrop_path' in movie:
+        cover_img = 'https://image.tmdb.org/t/p/w500' + str(movie['backdrop_path'])
+    else:
+        cover_img = ''
+
+    if 'poster_path' in movie:
+        poster_img = 'https://image.tmdb.org/t/p/w500' + str(movie['poster_path'])
+    else:
+        poster_img = ''
+
+    # Append each movie as a Movie Object to the popular movies array
+    # Summary and Videos aren't available for popular movies
+    popular_movies.append(media.Movie(title,'n/a',rating,runtime,year,cover_img,poster_img,''))
 
 
+# Add My Top Ten movies as Movie objects
 movie_01 = media.Movie("The Lion King",
                        "A young lion cub named Simba can't wait to be king. But his uncle craves the title for himself and will stop at nothing to get it.",
                        "7.8/10",
@@ -92,6 +142,7 @@ movie_10 = media.Movie("Drive",
                        "https://image.tmdb.org/t/p/original/nu7XIa67cXc2t7frXCE5voXUJcN.jpg",
                        "https://www.youtube.com/watch?v=KBiOF3y1W0Y")
 
-
-movieArray = [movie_01, movie_02, movie_03, movie_04, movie_05, movie_06, movie_07, movie_08, movie_09, movie_10]
-top_movies.open_movies_page(movieArray)
+# Put My top ten movies in an array
+movies = [movie_01, movie_02, movie_03, movie_04, movie_05, movie_06, movie_07, movie_08, movie_09, movie_10]
+# Pass movies and popular movie arrays to top_movies.py
+top_movies.open_movies_page(movies, popular_movies)
