@@ -1,5 +1,6 @@
 import webbrowser
 
+
 class Movie():
     """
     The Movie Class contains relevant information for each movie
@@ -12,11 +13,13 @@ class Movie():
         year (str): the year the movie was released
         cover_image_url (str): url that contains the backdrop image
         poster_image_url (str): url that contains the poster image
-        trailer_youtube_url (str): url that contains the youtube trailer
+        trailer_youtube_url (str): url that contains the trailer url
     """
 
     # Initialize Movie Instance
-    def __init__(self, movie_title, movie_summary, movie_rating, movie_runtime, movie_year, cover_image, poster_image, trailer_youtube):
+    def __init__(self, movie_title, movie_summary, movie_rating,
+                 movie_runtime, movie_year, cover_image, poster_image,
+                 trailer_youtube):
         self.title = movie_title
         self.summary = movie_summary
         self.rating = movie_rating

@@ -159,7 +159,7 @@ def create_movie_tiles_content(movies):
                               else None)
 
         # Append the tile for the movie with its content filled in
-        if index%2!=0:
+        if index % 2 != 0:
             content += movie_tile_content_left.format(
                 movie_title=movie.title,
                 movie_summary=movie.summary,
@@ -205,7 +205,7 @@ def open_movies_page(movies, popular_movies):
     # Create or overwrite the output file
     output_file = open('top_movies.html', 'w')
 
-    # Replace the movie tiles and popular movie tiles placeholders with generated content
+    # Replace the movie/popular movie tiles placeholders with generated content
     rendered_content = main_page_content.format(
         movie_tiles=create_movie_tiles_content(movies),
         popular_movie_tiles=create_popular_movie_tiles_content(popular_movies))
